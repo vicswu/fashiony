@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+}
+
+.app {
+    background-color: #fafafa;
+}
+
+.app_posts {
+    padding: 20px;
+}
+
+.app_header {
+    object-fit: contain;
+    background-color: white;
+    padding: 10px;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+}
+
+.app_headerImage {
+    width: 10rem;
+    object-fit: contain;
+    margin-left: 50px;
+}
+
+.app_signup {
+    display: flex;
+    flex-direction: column;
+}
+
+.app_loginContainer {
+    margin-top: 15px;
+    margin-right: 50px;
+}
+
+.app_logoutContainer {
+    margin-top: 15px;
+    margin-right: 50px;
+}
