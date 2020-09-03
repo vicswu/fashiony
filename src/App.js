@@ -11,6 +11,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import Input from '@material-ui/core/Input';
+import Typography from '@material-ui/core/Typography';
 
 // Firebase
 import {db, auth} from './firebase';
@@ -44,6 +45,7 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
+  const [openUpload, setOpenUpload] = useState(false);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -123,8 +125,27 @@ function App() {
           </form>
         </div>
       </Modal>
+      <Modal
+        open={openUpload}
+        onClose={() => setOpenUpload(false)}
+      >
+        <div style={modalStyle} className={classes.paper}>
+            {user?.displayName ? (
+              <ImageUpload username={user.displayName}/>
+              ) : (
+                <Typography className="app_centerText" variant="h6">Login to upload!</Typography>
+              )}
+        </div>
+      </Modal>
       <div className="app_header">
         <img className="app_headerImage" src={icon} alt="icon"/>
+            {user?.displayName ? (
+              <div className="app_centerButton">
+              <Button onClick={() => setOpenUpload(true)}>Create a new post!</Button>
+              </div>
+              ) : (
+                <Typography className="app_centerText" variant="h6">Login to upload!</Typography>
+              )}
         {user ? 
           (<div className="app_logoutContainer">
             <Button onClick={() => auth.signOut()}>Logout</Button>
@@ -136,13 +157,8 @@ function App() {
           </div>
         <div className="app_posts">
           {posts.map(({id, post}) => (
-          <Post key={id} postId={id} username={post.username} caption={post.caption} imageURL={post.imageURL}/>))}
+          <Post key={id} postId={id} user={user} username={post.username} caption={post.caption} imageURL={post.imageURL}/>))}
         </div>
-        {user?.displayName ? (
-            <ImageUpload username={user.displayName}/>
-            ) : (
-            <h3>Login to upload!</h3>
-            )}
       </div>
   );
 }

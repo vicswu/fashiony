@@ -10,13 +10,28 @@
     padding: 20px;
 }
 
+.app_centerText {
+    padding-left: auto;
+    margin-right: 100px;
+    padding-bottom: auto;
+    padding-top: 15px;
+}
+
+.app_centerButton {
+    padding-top: 15px;
+    margin-right: 100px;
+}
+
 .app_header {
+    position: sticky;
+    top: 0;
     object-fit: contain;
     background-color: white;
     padding: 10px;
     border-bottom: 1px solid lightgray;
     display: flex;
     justify-content: space-between;
+    z-index: 1;
 }
 
 .app_headerImage {
